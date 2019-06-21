@@ -80,8 +80,43 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Ran ```nest new <app-name>```
 
 ## Prisma Local
-Followed instructions at https://www.prisma.io/docs/1.34/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/ to get local prisma set up (with postgres)
+Followed instructions at https://www.prisma.io/docs/1.34/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/ to get local prisma set up (with postgres). Followed through step 6.
 
 To get prisma and postgres up ```docker-compose up -d``` in the prisma dir of the project root
 
 Ran ```prisma deploy``` to create the model in the datamodel.prisma in postgres
+
+## Integrating Prisma with Nestjs
+Following instructions at https://docs.nestjs.com/recipes/prisma
+
+Installed graphql-cli ```npm install -g graphql-cli```
+
+Created a graphql config file ```touch .graphqlconfig.yml // put this in root dir of project```
+
+Download Prisma GraphQL schema to src ```graphql get-schema --project database```. The docs say this creates a *prisma/prisma-types.graphql* file, but it actually creates a *src/prisma/datamodel.graphql* file.
+
+NOTE had to make change to the graphqlconfig.yml - changed to 
+
+```
+projects:
+  database:
+    schemaPath: src/prisma/datamodel.graphql
+    extensions:
+      endpoints:
+        default: http://localhost:4466
+      codegen:
+        - generator: prisma-binding
+          language: typescript
+          output:
+            binding: src/prisma/prisma.binding.ts
+  ```
+
+Generate Prisma client ```graphql codegen --project database```. Nest Docs say this creates a *prisma/prisma.binding.graphql* file but it actually creates a *src/prisma/prisma.binding.ts* file.
+
+
+
+
+
+## IMPORTANT DOCS
+- Prisma Deploy https://www.prisma.io/docs/prisma-cli-and-configuration/cli-command-reference/prisma-deploy-xcv9/
+- Prisma Admin http://localhost:4466/_admin
