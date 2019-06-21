@@ -83,3 +83,5 @@ Ran ```nest new <app-name>```
 Followed instructions at https://www.prisma.io/docs/1.34/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/ to get local prisma set up (with postgres)
 
 To get prisma and postgres up ```docker-compose up -d``` in the prisma dir of the project root
+
+Ran ```prisma deploy``` to create the model in the datamodel.prisma in postgres
