@@ -113,8 +113,34 @@ projects:
 
 Generate Prisma client ```graphql codegen --project database```. Nest Docs say this creates a *prisma/prisma.binding.graphql* file but it actually creates a *src/prisma/prisma.binding.ts* file.
 
+## GraphQL NestJs API Part
 
+Following https://docs.nestjs.com/graphql/quick-start
 
+Install required tools ```npm i --save @nestjs/graphql apollo-server-express graphql-tools graphql```
+
+Import GraphQLModule using forRoot in the app module ```imports: [GraphQLModule.forRoot({})],```
+
+Follow instructions for schema first building our argument to GraphQLModule. Final GraphQLModule looks like this
+```
+const graphQLDefinitionsFactory = new GraphQLDefinitionsFactory();
+graphQLDefinitionsFactory.generate({
+  typePaths: ['./**/*.graphql'],
+  path: join(process.cwd(), 'src/graphql.ts'),
+  outputAs: 'class',
+  // watch: true,
+});
+```
+This exists in a different script that when run generates typings.
+
+You end up with a scaled down GraphQLModule import for now
+```
+imports: [GraphQLModule.forRoot({
+  typePaths: ['./**/*.graphql'],
+})],
+```
+
+Running ```ts-node generate-typings``` generates your typings.
 
 
 ## IMPORTANT DOCS
