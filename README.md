@@ -142,6 +142,42 @@ imports: [GraphQLModule.forRoot({
 
 Running ```ts-node generate-typings``` generates your typings.
 
+App Module ends up being 
+```
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { GraphQLModule, GraphQLDefinitionsFactory } from '@nestjs/graphql';
+import { join } from 'path';
+import { GraphQLOptions } from './graphql-options';
+
+
+
+@Module({
+  imports: [GraphQLModule.forRootAsync({
+    useClass: GraphQLOptions,
+  })],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule { }
+```
+after refactor to useClass. forRootAsync simply supplies the config asynchronously. The GraphQLOptions class looks like
+```
+import { GqlOptionsFactory, GqlModuleOptions } from '@nestjs/graphql';
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class GraphQLOptions implements GqlOptionsFactory {
+  createGqlOptions(): Promise<GqlModuleOptions> | GqlModuleOptions {
+    return {
+      typePaths: ['./**/*.graphql'],
+    };
+  }
+}
+```
+
+
 
 ## IMPORTANT DOCS
 - Prisma Deploy https://www.prisma.io/docs/prisma-cli-and-configuration/cli-command-reference/prisma-deploy-xcv9/
