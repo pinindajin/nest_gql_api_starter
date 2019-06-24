@@ -1,6 +1,7 @@
 import { Resolver, Args, Info, Query, Mutation } from '@nestjs/graphql';
 import { PrismaService } from '../../prisma/prisma.service';
 import { User } from '../../prisma/generated/prisma.binding';
+import { BatchPayload } from '../../graphql/generated/graphql.schema';
 
 @Resolver()
 export class UserResolver {

@@ -14,7 +14,7 @@ import { join } from 'path';
 const graphQLDefinitionsFactory = new GraphQLDefinitionsFactory();
 graphQLDefinitionsFactory.generate({
   typePaths: ['./**/*.graphql'],
-  path: join(process.cwd(), 'src/graphql/graphql.schema.d.ts'),
+  path: join(process.cwd(), 'src/graphql/generated/graphql.schema.d.ts'),
   outputAs: 'class',
   // watch: true,
 });

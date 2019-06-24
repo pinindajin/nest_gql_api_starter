@@ -11,7 +11,7 @@ export class GraphQLOptions implements GqlOptionsFactory {
         requireResolversForResolveType: false,
       },
       definitions: {
-        path: join(process.cwd(), 'src/graphql.schema.d.ts'),
+        path: join(process.cwd(), 'src/graphql/generated/graphql.schema.d.ts'),
         outputAs: 'class',
       },
     };

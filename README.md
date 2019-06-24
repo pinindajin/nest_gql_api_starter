@@ -187,7 +187,7 @@ to GraphQLOptions to get rid of warning when generating typings. Also must defin
 
 Now we need to create a module and resolver for our User model.
 
-
+We use the types generated in previous steps and available at the ```src/prisma/generated``` dir as well as the ```src/graphql/generated``` dir.
 
 ## IMPORTANT DOCS
 - Prisma Deploy https://www.prisma.io/docs/prisma-cli-and-configuration/cli-command-reference/prisma-deploy-xcv9/
