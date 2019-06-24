@@ -185,6 +185,10 @@ resolverValidationOptions: {
 ```
 to GraphQLOptions to get rid of warning when generating typings. Also must define definitions and build definitions during config creation from factory since method *generate* on GraphQLDefinitionsFactory does not take an object with option *requireResolversForResolveType*.
 
+Now we need to create a module and resolver for our User model.
+
+
+
 ## IMPORTANT DOCS
 - Prisma Deploy https://www.prisma.io/docs/prisma-cli-and-configuration/cli-command-reference/prisma-deploy-xcv9/
 - Prisma Admin http://localhost:4466/_admin
