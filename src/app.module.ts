@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule, GraphQLDefinitionsFactory } from '@nestjs/graphql';
 import { join } from 'path';
-import { GraphQLOptions } from './graphql-options';
+import { GraphQLOptions } from './graphql/graphql-options';
 
 
 

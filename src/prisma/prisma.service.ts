@@ -1,5 +1,5 @@
-import { Prisma } from './prisma.binding';
 import { Injectable } from '@nestjs/common';
+import { Prisma } from './generated/prisma.binding';
 
 @Injectable()
 export class PrismaService extends Prisma {
