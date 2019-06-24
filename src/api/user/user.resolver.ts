@@ -1,4 +1,4 @@
-import { Resolver, Args, Info, Query, Mutation } from '@nestjs/graphql';
+import { Resolver, Args, Info, Query, Mutation, Subscription } from '@nestjs/graphql';
 import { PrismaService } from '../../prisma/prisma.service';
 import { User } from '../../prisma/generated/prisma.binding';
 import { BatchPayload } from '../../graphql/generated/graphql.schema';
@@ -30,5 +30,20 @@ export class UserResolver {
   @Mutation('updateManyUsers')
   async updateManyUsers(@Args() args, @Info() info): Promise<BatchPayload> {
     return this.prisma.mutation.updateManyUsers(args, info);
+  }
+
+  @Mutation('deleteUser')
+  async deleteUser(@Args() args, @Info() info): Promise<User> {
+    return this.prisma.mutation.deleteUser(args, info);
+  }
+
+  @Mutation('deleteManyUsers')
+  async deleteManyUsers(@Args() args, @Info() info): Promise<BatchPayload> {
+    return this.prisma.mutation.deleteManyUsers(args, info);
+  }
+
+  @Subscription('user')
+  onUserMutation(@Args() args, @Info() info) {
+    return this.prisma.subscription.user(args, info);
   }
 }

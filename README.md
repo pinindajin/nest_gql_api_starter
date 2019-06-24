@@ -189,6 +189,15 @@ Now we need to create a module and resolver for our User model.
 
 We use the types generated in previous steps and available at the ```src/prisma/generated``` dir as well as the ```src/graphql/generated``` dir.
 
+Added ```installSubscriptionHandlers: true,``` to graphql options to handle generated subscription resolver.
+
+
+
+
+
+
+
+
 ## IMPORTANT DOCS
 - Prisma Deploy https://www.prisma.io/docs/prisma-cli-and-configuration/cli-command-reference/prisma-deploy-xcv9/
 - Prisma Admin http://localhost:4466/_admin
