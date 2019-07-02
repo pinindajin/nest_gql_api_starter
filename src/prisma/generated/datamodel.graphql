@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Fri Jun 21 2019 17:20:01 GMT-0600 (Mountain Daylight Time)
+# timestamp: Tue Jul 02 2019 13:41:40 GMT-0600 (Mountain Daylight Time)
 
 type AggregateUser {
   count: Int!
