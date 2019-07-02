@@ -1,6 +1,6 @@
 projects:
   database:
-    schemaPath: src/prisma/datamodel.graphql
+    schemaPath: src/prisma/generated/datamodel.graphql
     extensions:
       endpoints:
         default: http://localhost:4466
