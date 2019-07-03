@@ -4,8 +4,8 @@ import * as Joi from '@hapi/joi';
 
 export enum ConfigKeyEnum {
   PORT = 'PORT',
-  GITHUB_OAUTH_CLIENT_SECRET = 'GITHUB_OAUTH_CLIENT_SECRET',
-  GITHUB_OAUTH_CLIENT_ID = 'GITHUB_OAUTH_CLIENT_ID',
+  GOOGLE_OAUTH_CLIENT_SECRET = 'GOOGLE_OAUTH_CLIENT_SECRET',
+  GOOGLE_OAUTH_CLIENT_ID = 'GOOGLE_OAUTH_CLIENT_ID',
   NODE_ENV = 'NODE_ENV',
 }
 
@@ -37,8 +37,8 @@ export class ConfigService {
         .valid(['development', 'production', 'test', 'provision'])
         .default('development'),
       PORT: Joi.number().default(3030),
-      GITHUB_OAUTH_CLIENT_ID: Joi.string().required(),
-      GITHUB_OAUTH_CLIENT_SECRET: Joi.string().required(),
+      GOOGLE_OAUTH_CLIENT_ID: Joi.string().required(),
+      GOOGLE_OAUTH_CLIENT_SECRET: Joi.string().required(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(

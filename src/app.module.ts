@@ -7,6 +7,7 @@ import { GraphQLOptions } from './graphql/graphql-options';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './api/user/user.module';
 import { ConfigModule } from './config/config.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ConfigModule } from './config/config.module';
     PrismaModule,
     UserModule,
     ConfigModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
