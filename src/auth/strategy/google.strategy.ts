@@ -6,11 +6,11 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(PassportGoogleOauth20Strategy, 'google') {
 
-  constructor(private readonly congigService: ConfigService) {
+  constructor(private readonly configService: ConfigService) {
     super({
-      clientID: congigService.get(ConfigKeyEnum.GOOGLE_OAUTH_CLIENT_ID),     // <- Replace this with your client id
-      clientSecret: congigService.get(ConfigKeyEnum.GOOGLE_OAUTH_CLIENT_SECRET), // <- Replace this with your client secret
-      callbackURL: 'http://localhost:3030/auth/google/callback',
+      clientID: configService.get(ConfigKeyEnum.GOOGLE_OAUTH_CLIENT_ID),     // <- Replace this with your client id
+      clientSecret: configService.get(ConfigKeyEnum.GOOGLE_OAUTH_CLIENT_SECRET), // <- Replace this with your client secret
+      callbackURL: configService.get(ConfigKeyEnum.GOOGLE_OAUTH_CALLBACK_URL),
       passReqToCallback: true,
       scope: ['profile'],
     });

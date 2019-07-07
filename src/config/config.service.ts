@@ -6,6 +6,7 @@ export enum ConfigKeyEnum {
   PORT = 'PORT',
   GOOGLE_OAUTH_CLIENT_SECRET = 'GOOGLE_OAUTH_CLIENT_SECRET',
   GOOGLE_OAUTH_CLIENT_ID = 'GOOGLE_OAUTH_CLIENT_ID',
+  GOOGLE_OAUTH_CALLBACK_URL = 'http://localhost:3030/auth/google/callback',
   NODE_ENV = 'NODE_ENV',
 }
 
@@ -39,6 +40,7 @@ export class ConfigService {
       PORT: Joi.number().default(3030),
       GOOGLE_OAUTH_CLIENT_ID: Joi.string().required(),
       GOOGLE_OAUTH_CLIENT_SECRET: Joi.string().required(),
+      GOOGLE_OAUTH_CALLBACK_URL: Joi.string().required(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
