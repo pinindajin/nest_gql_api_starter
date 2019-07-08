@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import { Joi } from '@hapi/joi';
+import * as Joi from '@hapi/joi';
 
 export enum ConfigKeyEnum {
   PORT = 'PORT',
