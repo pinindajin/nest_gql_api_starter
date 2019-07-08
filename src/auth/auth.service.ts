@@ -1,16 +1,13 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { sign } from 'jsonwebtoken';
-import { ConfigService } from '../config/config.service';
+import { ConfigService, ConfigKeyEnum } from '../config/config.service';
 
-enum AuthProvider {
+export enum AuthProvider {
   GOOGLE = 'google',
 }
 
 @Injectable()
 export class AuthService {
-
-  private readonly JWT_SECRET_KEY = 'VERY_SECRET_KEY'; // <- replace this with your secret key
-
   constructor(private readonly configService: ConfigService) {}
 
   async validateOAuthLogin(thirdPartyId: string, provider: AuthProvider): Promise<string> {
@@ -27,7 +24,9 @@ export class AuthService {
         provider,
       };
 
-      const jwt: string = sign(payload, this.JWT_SECRET_KEY, { expiresIn: 3600 });
+      const jwtSecretKey = this.configService.get(ConfigKeyEnum.JWT_SECRET_KEY);
+
+      const jwt: string = sign(payload, jwtSecretKey, { expiresIn: 3600 });
       return jwt;
     } catch (err) {
       throw new InternalServerErrorException('validateOAuthLogin', err.message);
