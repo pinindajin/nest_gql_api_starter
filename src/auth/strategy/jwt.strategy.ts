@@ -4,8 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { ConfigService, ConfigKeyEnum } from '../../config/config.service';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt')
-{
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 
   constructor(private readonly configService: ConfigService) {
     super({

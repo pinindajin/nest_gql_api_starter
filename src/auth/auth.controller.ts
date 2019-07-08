@@ -22,4 +22,10 @@ export class AuthController {
         else
             res.redirect(this.configService.get(ConfigKeyEnum.LOGIN_FAILURE_URL));
     }
+
+    @Get('protected')
+    @UseGuards(AuthGuard('jwt'))
+    protectedResource() {
+        return 'JWT is working!';
+    }
 }
