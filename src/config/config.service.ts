@@ -9,6 +9,7 @@ export enum ConfigKeyEnum {
   GOOGLE_OAUTH_CALLBACK_URL = 'GOOGLE_OAUTH_CALLBACK_URL',
   LOGIN_SUCCESS_URL = 'LOGIN_SUCCESS_URL',
   LOGIN_FAILURE_URL = 'LOGIN_FAILURE_URL',
+  JWT_SECRET_KEY = 'JWT_SECRET_KEY',
   NODE_ENV = 'NODE_ENV',
 }
 
@@ -45,6 +46,7 @@ export class ConfigService {
       GOOGLE_OAUTH_CALLBACK_URL: Joi.string().required(),
       LOGIN_SUCCESS_URL: Joi.string().required(),
       LOGIN_FAILURE_URL: Joi.string().required(),
+      JWT_SECRET_KEY: Joi.string().required(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
