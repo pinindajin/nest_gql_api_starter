@@ -1,8 +1,11 @@
 import { Controller, Get, UseGuards, Req, Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ConfigService, ConfigKeyEnum } from '../config/config.service';
 
 @Controller('auth')
 export class AuthController {
+  constructor(private readonly configService: ConfigService) {}
+
   @Get('google')
     @UseGuards(AuthGuard('google'))
     googleLogin() {
@@ -15,8 +18,8 @@ export class AuthController {
         // handles the Google OAuth2 callback
         const jwt: string = req.user.jwt;
         if (jwt)
-            res.redirect('http://localhost:4200/login/succes/' + jwt);
+            res.redirect(`${this.configService.get(ConfigKeyEnum.LOGIN_SUCCESS_URL)}/${jwt}`);
         else
-            res.redirect('http://localhost:4200/login/failure');
+            res.redirect(this.configService.get(ConfigKeyEnum.LOGIN_FAILURE_URL));
     }
 }

@@ -1,12 +1,14 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import * as Joi from '@hapi/joi';
+import { Joi } from '@hapi/joi';
 
 export enum ConfigKeyEnum {
   PORT = 'PORT',
   GOOGLE_OAUTH_CLIENT_SECRET = 'GOOGLE_OAUTH_CLIENT_SECRET',
   GOOGLE_OAUTH_CLIENT_ID = 'GOOGLE_OAUTH_CLIENT_ID',
-  GOOGLE_OAUTH_CALLBACK_URL = 'http://localhost:3030/auth/google/callback',
+  GOOGLE_OAUTH_CALLBACK_URL = 'GOOGLE_OAUTH_CALLBACK_URL',
+  LOGIN_SUCCESS_URL = 'LOGIN_SUCCESS_URL',
+  LOGIN_FAILURE_URL = 'LOGIN_FAILURE_URL',
   NODE_ENV = 'NODE_ENV',
 }
 
@@ -41,6 +43,8 @@ export class ConfigService {
       GOOGLE_OAUTH_CLIENT_ID: Joi.string().required(),
       GOOGLE_OAUTH_CLIENT_SECRET: Joi.string().required(),
       GOOGLE_OAUTH_CALLBACK_URL: Joi.string().required(),
+      LOGIN_SUCCESS_URL: Joi.string().required(),
+      LOGIN_FAILURE_URL: Joi.string().required(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
